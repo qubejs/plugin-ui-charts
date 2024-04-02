@@ -2,14 +2,14 @@
 
 /* eslint-disable */
 export default {
-  displayName: 'ui-material-base',
+  displayName: 'ui-charts',
   preset: '../../jest.preset.js',
   setupFilesAfterEnv: ['./jest-setup.ts'],
   reporters: [
     'default',
     [
       'jest-junit',
-      { outputDirectory: 'coverage/libs/ui-material-base', outputName: 'junit.xml' },
+      { outputDirectory: 'coverage/libs/ui-charts', outputName: 'junit.xml' },
     ],
   ],
   // setupFilesAfterEnv: [path.join(__dirname, 'global-setup.js')],
@@ -21,5 +21,5 @@ export default {
     '/node_modules/(?!react-dnd|core-dnd|@react-dnd|dnd-core|react-dnd-html5-backend|gsap|d3|internmap|delaunator|robust-predicates)',
   ],
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
-  coverageDirectory: '../../coverage/libs/ui-material-base',
+  coverageDirectory: '../../coverage/libs/ui-charts',
 };

@@ -1,7 +1,11 @@
-# ui-material-base
+# @qubejs/ui-charts
+Apex charts integration
 
-This library was generated with [Nx](https://nx.dev).
+[![npm](https://img.shields.io/npm/dm/@qubejs/ui-charts.svg)](https://www.npmjs.com/package/@qubejs/ui-charts)
+[![npm](https://img.shields.io/npm/v/@qubejs/ui-charts.svg)](https://www.npmjs.com/package/@qubejs/ui-charts)
 
-## Running unit tests
 
-Run `nx test ui-material-base` to execute the unit tests via [Jest](https://jestjs.io).
+## License
+
+This project is licensed under the terms of the
+[MIT license](/LICENSE).
