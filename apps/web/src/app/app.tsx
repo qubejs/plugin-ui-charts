@@ -29,78 +29,180 @@ storage.containers.set({
 const data = [];
 for (let index = 0; index < 100; index++) {
   data.push({
-    month: new Date(new DateTime().addDays(index).toStringDefault()),
+    date: new DateTime().addDays(index).toString(),
     open: parseInt((Math.random() * 100).toString()),
     closed: parseInt((Math.random() * 100).toString()),
   });
 }
-
+const pieData = [
+  {
+    category: '6671275cf536773e22496615',
+    transactionType: 'dr',
+    amount: 2244,
+    categoryName: 'Entertainment',
+  },
+  {
+    category: '6671275cf536773e22496610',
+    transactionType: 'dr',
+    amount: 12,
+    categoryName: 'Dine out',
+  },
+  {
+    category: '6671275cf536773e22496606',
+    transactionType: 'cr',
+    amount: 20000,
+    categoryName: 'Bonus',
+  },
+];
 export function App() {
   const navigate = useNavigate();
   // const { Snackbar } = storage.components.get();
   const { Chart } = storage.components.get();
-  console.log(Chart);
+  console.log(data, Chart);
   useEffect(() => {
     setNavigate(navigate);
   }, []);
-  const series = useMemo(
-    () => [
-      {
-        type: 'area',
-        name: 'Open',
-        data: data.map((item) => ({ x: item.month.getTime(), y: item.open })),
-      },
-      {
-        type: 'area',
-        name: 'Closed',
-        data: data.map((item) => ({
-          x: item.month.getTime(),
-          y: parseFloat((item.closed * -0.2).toString()).toFixed(2),
-        })),
-      },
-    ],
-    []
-  );
-  const chartConfig = useMemo(
+
+  const chartConfigLine = useMemo(
     () => ({
-      plotOptions: {
-        bar: {
-          dataLabels: {
-            position: 'top',
+      xAxis: [
+        {
+          scaleType: 'time',
+          dataType: 'date',
+          dataKey: 'date',
+          min: new Date(data[0].date),
+          max: new Date(data[data.length - 1].date),
+          valueFormatter: (val) => {
+            return utils.format.getFormatters().dateOnly(val);
           },
         },
-      },
-      chart: {
-        type: 'line',
-        zoom: {
-          type: 'x',
-          autoScaleYaxis: false,
+      ],
+      series: [
+        {
+          label: 'Open',
+          // area: true,
+          showMark: false,
+          connectNulls: true,
+          dataKey: 'open',
+          valueFormatter: (value) => {
+            return value === null
+              ? 'N/A'
+              : utils.format.getFormatters().currency(value);
+          },
+          // color: cssVariabs.brandSecondary,
         },
-      },
-      stroke: {
-        curve: 'smooth',
-      },
-      title: {
-        text: 'Product Trends by Month',
-        align: 'left',
-      },
-      grid: {
-        row: {
-          colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
-          opacity: 0.5,
+        {
+          label: 'Closed',
+          // xValue: 'date',
+          // area: true,
+          showMark: false,
+          connectNulls: true,
+          dataKey: 'closed',
+          // color: cssVariabs.infoDarker,
+          valueFormatter: (value) => {
+            return value === null
+              ? 'N/A'
+              : utils.format.getFormatters().currency(value);
+          },
         },
-      },
-      xaxis: {
-        type: 'datetime',
-      },
+      ],
+    }),
+    []
+  );
+  const chartConfigBar = useMemo(
+    () => ({
+      xAxis: [
+        {
+          scaleType: 'band',
+          dataType: 'date',
+          dataKey: 'date',
+          min: new Date(data[0].date),
+          max: new Date(data[data.length - 1].date),
+          valueFormatter: (val) => {
+            return utils.format.getFormatters().dateOnly(val);
+          },
+        },
+      ],
+      series: [
+        {
+          label: 'Open',
+          // area: true,
+          showMark: false,
+          connectNulls: true,
+          dataKey: 'open',
+          valueFormatter: (value) => {
+            return value === null
+              ? 'N/A'
+              : utils.format.getFormatters().currency(value);
+          },
+          // color: cssVariabs.brandSecondary,
+        },
+        {
+          label: 'Closed',
+          // xValue: 'date',
+          // area: true,
+          showMark: false,
+          connectNulls: true,
+          dataKey: 'closed',
+          // color: cssVariabs.infoDarker,
+          valueFormatter: (value) => {
+            return value === null
+              ? 'N/A'
+              : utils.format.getFormatters().currency(value);
+          },
+        },
+      ],
+    }),
+    []
+  );
+  const chartConfigPie = useMemo(
+    () => ({
+      // colors:['red', 'green', 'blue'],
+      series: [
+        {
+          name: 'name',
+          outerRadius: 100,
+          data: pieData.map((pD, idx) => {
+            return {
+              value: pD.amount,
+              label: pD.categoryName,
+            };
+          }),
+          // color: cssVariabs.brandSecondary,
+        },
+        {
+          innerRadius: 70,
+          data: pieData.map((pD, idx) => {
+            return {
+              value: pD.amount,
+              label: pD.category,
+            };
+          }),
+          // color: cssVariabs.brandSecondary,
+        },
+      ],
     }),
     []
   );
 
   return (
     <div>
-      Apex Chart
-      <Chart chartConfig={chartConfig} series={series} height={400} />
+      Line Chart
+      <Chart
+        type="Line"
+        data={data}
+        chartConfig={chartConfigLine}
+        height={400}
+      />
+      Bar Chart
+      <Chart
+        type="Bar"
+        data={data.slice(0, 10)}
+        chartConfig={chartConfigBar}
+        height={400}
+      />
+      Pie Charts
+      <Chart type="Pie" chartConfig={chartConfigPie} height={400} />
     </div>
   );
 }

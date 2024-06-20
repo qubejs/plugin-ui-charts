@@ -1,10 +1,2 @@
-import ApexCharts from 'react-apexcharts';
-const SQChart = ({ className, chartConfig, series, ...reset }) => {
-
-  return (
-    <div className={`sq-ap-chart ${className}`}>
-      <ApexCharts options={chartConfig} series={series} {...reset} />
-    </div>
-  );
-};
-export default SQChart;
+import CustomChartV2 from './ChartV2';
+export default CustomChartV2;
