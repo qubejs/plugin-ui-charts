@@ -157,7 +157,6 @@ export function App() {
   );
   const chartConfigPie = useMemo(
     () => ({
-      // colors:['red', 'green', 'blue'],
       series: [
         {
           name: 'name',
@@ -202,7 +201,7 @@ export function App() {
         height={400}
       />
       Pie Charts
-      <Chart type="Pie" chartConfig={chartConfigPie} height={400} />
+      <Chart colorSet="green" type="Pie" chartConfig={chartConfigPie} height={400} />
     </div>
   );
 }

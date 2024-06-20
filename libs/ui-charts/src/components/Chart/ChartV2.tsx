@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import LineChart from './chartTypes/LineChart';
 import PieChart from './chartTypes/PieChart';
 import BarChart from './chartTypes/BarChart';
+import colorSets from '../color-sets';
+
 // import { charts } from '../../utils/storage';
 const types = {
   Pie: PieChart,
@@ -19,6 +21,7 @@ const dataTypes = {
 const CustomChartV2 = ({
   className = '',
   data = [],
+  colorSet = 'default',
   type = 'Line',
   chartConfig,
   noDataMessage = 'No data found',
@@ -52,6 +55,7 @@ const CustomChartV2 = ({
       {finalData && (
         <ChartToRender
           dataset={finalData}
+          colors={colorSets[colorSet] || colorSets.default}
           {...chartConfig}
           height={height}
           width={width}
