@@ -15,7 +15,6 @@ import {
       
         series={series}
         xAxis={xAxis}
-        grid={{ horizontal: true }}
         {...rest}
         width={width}
         height={400}

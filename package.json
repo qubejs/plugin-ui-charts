@@ -3,7 +3,7 @@
   "version": "0.0.20",
   "license": "MIT",
   "scripts": {
-    "update:core": "npm i @qubejs/cms@latest @qubejs/core@latest @qubejs/scripts@latest @qubejs/web-react@latest @qubejs/ui-material-base@latest --legacy-peer-deps"
+    "update:all": "npm i @qubejs/cms@latest @qubejs/core@latest @qubejs/scripts@latest @qubejs/web-react@latest @qubejs/ui-material-base@latest --legacy-peer-deps"
   },
   "private": true,
   "dependencies": {
@@ -13,16 +13,16 @@
     "@mui/lab": "^5.0.0-alpha.81",
     "@mui/material": "^5.8.0",
     "@mui/styles": "^5.8.0",
+    "@mui/x-charts": "^7.7.0",
     "@mui/x-date-pickers": "^5.0.0-beta.5",
     "@nx-plus/docusaurus": "^15.0.0-rc.0",
-    "@qubejs/cms": "^0.4.0-next.15",
-    "@qubejs/core": "^0.4.0-next.15",
-    "@qubejs/scripts": "^0.4.0-next.15",
-    "@qubejs/ui-material-base": "^0.4.0-next.15",
-    "@qubejs/web-react": "^0.4.0-next.15",
+    "@qubejs/cms": "^0.5.0-beta.22",
+    "@qubejs/core": "^0.5.0-beta.22",
+    "@qubejs/scripts": "^0.5.0-beta.22",
+    "@qubejs/ui-material-base": "^0.5.0-beta.22",
+    "@qubejs/web-react": "^0.5.0-beta.22",
     "@reduxjs/toolkit": "^1.9.5",
     "animated-scroll-to": "^2.0.12",
-    "apexcharts": "^3.48.0",
     "bootstrap": "^4.5.3",
     "clsx": "^1.2.1",
     "date-fns": "^2.28.0",
